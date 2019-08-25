@@ -12,11 +12,12 @@ mongoose.connect(`mongodb://localhost/todo`, {useNewUrlParser: true}, function(e
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use(function(req, res) {
-  res.status(404).send({url: req.originalUrl + ' not found'});
-});
 
 routes(app);
 app.listen(port);
+
+app.use(function(req, res) {
+  res.status(404).send({url: req.originalUrl + ' not found'});
+});
 
 console.log(`Listening to port: ${port}`);
